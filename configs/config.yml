@@ -1,0 +1,11 @@
+port: 8080
+
+redis:
+  addr: "redis:6379"
+  stream: "tasks_stream"
+postgres:
+  host: "postgres"
+  port: "5432"
+  user: "postgres"
+  password: "230405"
+  dbname: "tasks_db"
