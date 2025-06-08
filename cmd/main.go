@@ -1,11 +1,12 @@
 package main
 
 import (
+	"context"
 	"fmt"
+
 	"github.com/joho/godotenv"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
-	"github.com/polyk005/micro_servis/pkg/server"
 )
 
 func main() {
@@ -21,9 +22,8 @@ func main() {
 		logrus.Fatalf("error loading env variables: %s", err.Error())
 	}
 
-	srv := new(server.Server)
-	if err := srv.Run(viper.GetString("port")); err != nil {
-		logrus.Fatalf("error occured while running http server: %s", err.Error())
+	if err := godotenv.Load(); err != nil {
+		logrus.Fatalf("error loading env variables: %s", err.Error())
 	}
 }
 

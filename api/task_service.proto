@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "github.com/polyk005/micro_servis/pkg/api";
+
+service TaskService {
+    rpc CreateTask (CreateTaskRequest) returns (CreateTaskResponse);
+    rpc GetTask (GetTaskRequest) returns (GetTaskResponse);
+}
+
+message Task {
+    string id = 1;
+    string title = 2;
+    string description = 3;
+    TaskStatus status = 4;
+}
+
+enum TaskStatus {
+    PENDING = 0;
+    IN_PROGRESS = 1;
+    COMPLETED = 2;
+}
+
+message CreateTaskRequest {
+    string title = 1;
+    string description = 2;
+}
+
+message CreateTaskResponse {
+    Task task = 1;
+}
+
+message GetTaskRequest {
+    string id = 1;
+}
+
+message GetTaskResponse {
+    Task task = 1;
+}

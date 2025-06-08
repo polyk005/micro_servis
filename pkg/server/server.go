@@ -4,10 +4,22 @@ import (
 	"context"
 	"net/http"
 	"time"
+	
+	"github.com/spf13/viper"
+	"github.com/polyk005/micro_servis/pkg/queue"
+	"github.com/polyk005/micro_servis/pkg/handler"
+	"github.com/polyk005/micro_servis/pkg/repository"
 )
 
 type Server struct {
 	httpServer *http.Server
+	repo      repository.Repository
+}
+
+func NewServer(repo repository.Repository) *Server {
+	return &Server{
+		repo: repo,
+	}
 }
 
 func (s *Server) Run(port string) error {
